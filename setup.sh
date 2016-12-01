@@ -16,7 +16,7 @@ eval $(docker-machine env docker-ci-tools)
 
 echo "Checkout Git Repository"
 git clone git@github.com:pramine/ci-tools.git
-cd docker-ci-tool-stack
+cd ci-tools
 
 echo "Startup Docker Compose"
 docker-compose up

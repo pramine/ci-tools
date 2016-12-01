@@ -13,11 +13,11 @@ Since all containers run in a single VM (virtualbox), this VM needs enough memor
 
 ### Step 0 - Check Docker Machine version
 
-Ensure that you are using version 0.3.0 or greater of `docker-machine`
+Ensure that you are using version 0.4.0 or greater of `docker-machine`
 
 ```
 # docker-machine version
-docker-machine version 0.5.4, build
+docker-machine version 0.8.2, build e18a919
 ```
 
 ### Step 1 - Start Docker Machine
@@ -59,8 +59,8 @@ To get all docker containers up and running use:
 
 ```
 # Clone Repository and startup all docker container
-git clone git@github.com:marcelbirkner/docker-ci-tool-stack.git
-cd docker-ci-tool-stack
+git clone git@github.com:pramine/ci-tools.git
+cd ci-tools
 docker-compose up
 ```
 
@@ -120,8 +120,8 @@ That eliminates any side effects. Afterwards you can throw away the image.
 
 ```
 # Create new image
-docker-machine create --driver virtualbox --virtualbox-memory 6000 docker-ci-v1
+docker-machine create --driver virtualbox --virtualbox-memory 6000 ci-v1
 
 # Configure shell environment
-eval $(docker-machine env docker-ci-v1)
+eval $(docker-machine env ci-v1)
 ```
