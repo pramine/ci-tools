@@ -9,10 +9,10 @@
 # - Git v2.6.4
 
 echo "Create docker machine"
-docker-machine create -d virtualbox --virtualbox-memory "6000" docker-ci-tools
+docker-machine create -d virtualbox --virtualbox-memory "6000" ci-tools
 
 echo "Setup environment"
-eval $(docker-machine env docker-ci-tools)
+eval $(docker-machine env ci-tools)
 
 echo "Checkout Git Repository"
 git clone git@github.com:pramine/ci-tools.git
