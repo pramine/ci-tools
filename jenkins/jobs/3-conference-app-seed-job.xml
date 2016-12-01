@@ -11,11 +11,7 @@
   <keepDependencies>false</keepDependencies>
   <properties>
     <com.coravy.hudson.plugins.github.GithubProjectProperty plugin="github@1.14.0">
-<<<<<<< HEAD
       <projectUrl>https://github.com/codecentric/conference-app/</projectUrl>
-=======
-      <projectUrl>https://github.com/pramine/demo-app/</projectUrl>
->>>>>>> 5f776607373754cc5426d55aa7f6c2e8dc861a89
     </com.coravy.hudson.plugins.github.GithubProjectProperty>
     <com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.25">
       <autoRebuild>false</autoRebuild>

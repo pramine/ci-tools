@@ -1,4 +1,4 @@
-def gitUrl = 'https://github.com/pramine/demo-app'
+def gitUrl = 'https://github.com/codecentric/conference-app/'
 
 createCiJob("demo-app", gitUrl, "app/pom.xml")
 createSonarJob("demo-app", gitUrl, "app/pom.xml")
