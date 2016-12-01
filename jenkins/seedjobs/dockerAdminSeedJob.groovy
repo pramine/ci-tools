@@ -7,7 +7,7 @@ createDockerJob("docker-admin-build-jenkins-container", "cd jenkins && sudo /usr
 createDockerJob("docker-admin-start-jenkins-container", "sudo /usr/bin/docker run -d --name did_jenkins -p=28080:8080 jenkins", gitUrl)
 createDockerJob("docker-admin-stop-jenkins-container", 'sudo /usr/bin/docker stop \$(sudo /usr/bin/docker ps -a -q --filter="name=did_jenkins") && sudo /usr/bin/docker rm \$(sudo /usr/bin/docker ps -a -q --filter="name=did_jenkins")', "")
 
-def demoAppGitUrl="https://github.com/pramine/demo-app"
+def demoAppGitUrl="https://github.com/codecentric/conference-app"
 createDockerJob("docker-demo-app-build-container", "cd app && sudo /usr/bin/docker build -t demoapp .", demoAppGitUrl)
 createDockerJob("docker-demo-app-start-container", "sudo /usr/bin/docker run -d --name demoapp -p=48080:8080 demoapp", demoAppGitUrl)
 createDockerJob("docker-demo-app-stop-container", 'sudo /usr/bin/docker stop \$(sudo /usr/bin/docker ps -a -q --filter="name=demoapp") && sudo /usr/bin/docker rm \$(sudo /usr/bin/docker ps -a -q --filter="name=demoapp")', " ")
