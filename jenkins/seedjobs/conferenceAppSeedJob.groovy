@@ -49,7 +49,7 @@ def createCiJob(def jobName, def gitUrl, def pomFile) {
         mavenInstallation('Maven 3.3.3')
         rootPOM(pomFile)
         mavenOpts('-Xms512m -Xmx1024m')
-        providedGlobalSettings('MyGlobalSettings')
+       
       }
     }
     publishers {
