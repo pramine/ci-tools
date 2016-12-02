@@ -1,4 +1,4 @@
-def gitUrl = 'https://github.com/codecentric/conference-app/'
+def gitUrl = 'https://github.com/codecentric/conference-app'
 
 createCiJob("conference-app", gitUrl, "app/pom.xml")
 createSonarJob("conference-app", gitUrl, "app/pom.xml")
@@ -42,14 +42,14 @@ def createCiJob(def jobName, def gitUrl, def pomFile) {
           mavenInstallation('Maven 3.3.3')
           rootPOM( pomFile )
           mavenOpts('-Xms512m -Xmx1024m')
-         
+          providedGlobalSettings('MyGlobalSettings')
       }
       maven {
         goals('clean deploy')
         mavenInstallation('Maven 3.3.3')
         rootPOM(pomFile)
         mavenOpts('-Xms512m -Xmx1024m')
-       
+        providedGlobalSettings('MyGlobalSettings')
       }
     }
     publishers {
@@ -195,14 +195,14 @@ def createDockerStopJob(def jobName, def folder) {
 buildPipelineView('Pipeline') {
     filterBuildQueue()
     filterExecutors()
-    title('conference App CI Pipeline')
+    title('Conference App CI Pipeline')
     displayedBuilds(5)
     selectedJob("conference-app-1-ci")
     alwaysAllowManualTrigger()
     refreshFrequency(60)
 }
 
-listView('conference App') {
+listView('Conference App') {
     description('')
     filterBuildQueue()
     filterExecutors()

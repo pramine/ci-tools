@@ -1,4 +1,4 @@
-def giturl = 'https://github.com/pramine/seleniummaven'
+def giturl = 'https://github.com/marcelbirkner/selenium2-maven-project'
 job("selenium2-maven-project") {
   scm {
     git {
