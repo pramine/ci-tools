@@ -1,16 +1,16 @@
 def gitUrl = 'https://github.com/codecentric/conference-app/'
 
-createCiJob("demo-app", gitUrl, "app/pom.xml")
-createSonarJob("demo-app", gitUrl, "app/pom.xml")
-createDockerBuildJob("demo-app", "app")
-createDockerStartJob("demo-app", "app", "48080")
-createDockerStopJob("demo-app", "app")
+createCiJob("conference-app", gitUrl, "app/pom.xml")
+createSonarJob("conference-app", gitUrl, "app/pom.xml")
+createDockerBuildJob("conference-app", "app")
+createDockerStartJob("conference-app", "app", "48080")
+createDockerStopJob("conference-app", "app")
 
-createCiJob("demo-app-monitoring", gitUrl, "monitoring/pom.xml")
-createSonarJob("demo-app-monitoring", gitUrl, "monitoring/pom.xml")
-createDockerBuildJob("demo-app-monitoring", "monitoring")
-createDockerStartJob("demo-app-monitoring", "monitoring", "58080")
-createDockerStopJob("demo-app-monitoring", "monitoring")
+createCiJob("conference-app-monitoring", gitUrl, "monitoring/pom.xml")
+createSonarJob("conference-app-monitoring", gitUrl, "monitoring/pom.xml")
+createDockerBuildJob("conference-app-monitoring", "monitoring")
+createDockerStartJob("conference-app-monitoring", "monitoring", "58080")
+createDockerStopJob("conference-app-monitoring", "monitoring")
 
 def createCiJob(def jobName, def gitUrl, def pomFile) {
   job("${jobName}-1-ci") {
@@ -129,7 +129,7 @@ def createDockerBuildJob(def jobName, def folder) {
     }
     steps {
       steps {
-        shell("cd ${folder} && sudo /usr/bin/docker build -t demo-${folder} .")
+        shell("cd ${folder} && sudo /usr/bin/docker build -t conference-${folder} .")
       }
     }
     publishers {
@@ -158,10 +158,10 @@ def createDockerStartJob(def jobName, def folder, def port) {
     steps {
       steps {
         shell('echo "Stopping Docker Container first"')
-        shell("sudo /usr/bin/docker stop \$(sudo /usr/bin/docker ps -a -q --filter=\"name=demo-${folder}\") | true ")
-        shell("sudo /usr/bin/docker rm \$(sudo /usr/bin/docker ps -a -q --filter=\"name=demo-${folder}\") | true ")
+        shell("sudo /usr/bin/docker stop \$(sudo /usr/bin/docker ps -a -q --filter=\"name=conference-${folder}\") | true ")
+        shell("sudo /usr/bin/docker rm \$(sudo /usr/bin/docker ps -a -q --filter=\"name=conference-${folder}\") | true ")
         shell('echo "Starting Docker Container"')
-        shell("sudo /usr/bin/docker run -d --name demo-${folder} -p=${port}:8080 demo-${folder}")
+        shell("sudo /usr/bin/docker run -d --name conference-${folder} -p=${port}:8080 conference-${folder}")
       }
     }
     publishers {
@@ -182,8 +182,8 @@ def createDockerStopJob(def jobName, def folder) {
     }
     steps {
       steps {
-        shell("sudo /usr/bin/docker stop \$(sudo /usr/bin/docker ps -a -q --filter=\"name=demo-${folder}\")")
-        shell("sudo /usr/bin/docker rm \$(sudo /usr/bin/docker ps -a -q --filter=\"name=demo-${folder}\")")
+        shell("sudo /usr/bin/docker stop \$(sudo /usr/bin/docker ps -a -q --filter=\"name=conference-${folder}\")")
+        shell("sudo /usr/bin/docker rm \$(sudo /usr/bin/docker ps -a -q --filter=\"name=conference-${folder}\")")
       }
     }
     publishers {
@@ -195,19 +195,19 @@ def createDockerStopJob(def jobName, def folder) {
 buildPipelineView('Pipeline') {
     filterBuildQueue()
     filterExecutors()
-    title('demo App CI Pipeline')
+    title('conference App CI Pipeline')
     displayedBuilds(5)
-    selectedJob("demo-app-1-ci")
+    selectedJob("conference-app-1-ci")
     alwaysAllowManualTrigger()
     refreshFrequency(60)
 }
 
-listView('demo App') {
+listView('conference App') {
     description('')
     filterBuildQueue()
     filterExecutors()
     jobs {
-        regex(/demo-app-.*/)
+        regex(/conference-app-.*/)
     }
     columns {
         status()
